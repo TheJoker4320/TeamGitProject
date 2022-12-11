@@ -13,12 +13,12 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {}
-  WPI_TalonSRX exe1Num1=new WPI_TalonSRX(Constants.firstName);
-  WPI_TalonSRX exe1Num2=new WPI_TalonSRX(Constants.secondName);
-  MotorControllerGroup shoterEngens = new MotorControllerGroup(exe1Num1,exe1Num2);
+  WPI_TalonSRX masterMotor=new WPI_TalonSRX(Constants.firstName);
+  WPI_TalonSRX slaveMotor=new WPI_TalonSRX(Constants.secondName);
+  MotorControllerGroup shoterEngens = new MotorControllerGroup(masterMotor,slaveMotor);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    exe1Num1.follow(exe1Num2);
+    slaveMotor.follow(masterMotor);
   }
 }
